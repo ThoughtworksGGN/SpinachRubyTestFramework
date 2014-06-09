@@ -1,0 +1,40 @@
+== README
+
+Spinach-Ruby Test Framework
+============================
+
+This framework is to setup spinach - page object based automation testing for Ruby on Rails project.
+
+It has 'features' directory which further has 4 parts.
+* 'support' contains all basic settings that are required to:
+    -set up test environment like driver initiation, setting env variables etc
+    -clean-up tasks like quitting driver, db cleaner etc.
+* 'pages' contains page object classes
+* 'steps' contains:
+    -step definition classes
+    -matchers: they poll at interval of 2 sec and wait for the condition to become true (example wait for element to become visible, wait for page to load, wait for element to load some text). They can be handy in case of ajax requests.
+        Example of matchers: expect{'some boolean condition'}.to become_true. Here become_true is a matcher defined in steps/wait_steps.rb
+* 'smoke' contains feature files.
+
+
+How to setup & run
+------------------
+
+Prerequisite:
+* Ruby language 1.9.3 or newer
+
+Steps to set-up from Commandline:
+* Clone project
+* Run command: Gem install bundler
+* Run command: bundle install
+
+
+Steps to run tests from Commandline:
+* Browser mode:
+    * For Firefox run command: rake spinach
+    * For Chrome run command: driver=chrome rake spinach
+* Headless mode:
+    * Run command: headless=false rake spinach
+
+PS: You can download chrome driver from https://code.google.com/p/selenium/wiki/ChromeDriver
+

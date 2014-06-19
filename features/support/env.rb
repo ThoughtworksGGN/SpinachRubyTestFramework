@@ -17,15 +17,11 @@ Capybara.default_wait_time = 16
 Spinach.hooks.before_run do
   case ENV['headless']
     when 'true'
-      require 'headless'
-      unless ENV['TEST_ENV_NUMBER'].blank?
-        display = ENV['TEST_ENV_NUMBER'].to_i + 1
-      else
-        display = 99
+      require 'capybara/poltergeist'
+      Capybara.register_driver :poltergeist do |app|
+        Capybara::Poltergeist::Driver.new(app, {js_errors: false, port:44678+ENV['TEST_ENV_NUMBER'].to_i, phantomjs_options:['--proxy-type=none'], timeout:180})
       end
-      headless = Headless.new(:display => display, :reuse => false, :dimensions => '1280x1024x16')
-      headless.start
-      Capybara.default_driver = Capybara.javascript_driver = :webkit
+      Capybara.default_driver = Capybara.javascript_driver = :poltergeist
     else
       case ENV['driver']
         when 'chrome'

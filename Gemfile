@@ -33,11 +33,10 @@ group :doc do
 end
 
 group :test, :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '< 3.0.0'
   gem 'pry'
   gem 'spinach-rails'
-  gem 'headless'
-  gem 'capybara-webkit'
+  gem 'poltergeist', '~> 1.1.1'
   gem 'capybara-page-object'
   gem 'selenium-webdriver'
 end

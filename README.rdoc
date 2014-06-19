@@ -1,6 +1,6 @@
 == README
 
-Spinach-Ruby Test Framework
+BOOTSTRAP: Spinach-Ruby Test Framework
 ============================
 
 This framework is to setup spinach - page object based automation testing for Ruby on Rails project.
@@ -25,16 +25,16 @@ Prerequisite:
 
 Steps to set-up from Commandline:
 * Clone project
-* Run command: Gem install bundler
+* Run command: gem install bundler
 * Run command: bundle install
 
 
 Steps to run tests from Commandline:
 * Browser mode:
-    * For Firefox run command: rake spinach
-    * For Chrome run command: driver=chrome rake spinach
+    * For Firefox run command: bundle exec rake spinach
+    * For Chrome run command: driver=chrome bundle exec rake spinach
 * Headless mode:
-    * Run command: headless=false rake spinach
+    * Run command: headless=false bundle exec rake spinach
 
 PS: You can download chrome driver from https://code.google.com/p/selenium/wiki/ChromeDriver
 

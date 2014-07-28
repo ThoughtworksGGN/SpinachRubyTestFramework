@@ -3,7 +3,7 @@ require './config/environment'
 
 require 'rspec/rails'
 
-Capybara.app_host = "http://xndev.com/2012/04/physical-books/"
+Capybara.app_host = "http://search.yahoo.com/"
 Capybara.run_server = false
 
 Dir["#{Rails.root}/features/pages/**/*.rb"].sort.each do |file|

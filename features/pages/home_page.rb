@@ -2,32 +2,28 @@ module Pages
   class Home < Pages::Base
     path '/'
 
-    def comment_author
-      source.find('#author')
+    def search_field
+      source.find('#yschsp')
     end
 
-    def comment_email
-      source.find('#email')
+    def submit_search_button
+      source.find('.sbb')
     end
 
-    def comment
-      source.find('#comment')
+    def search(value)
+      search_field.set(value)
     end
 
-    def submit_comment
-      source.find('#submit').click
+    def submit_search
+      submit_search_button.click
     end
 
-    def fill_comment_name(name)
-      comment_author.set(name)
+    def search_results
+      source.all('.res a.yschttl')
     end
 
-    def fill_comment_email(email)
-      comment_email.set(email)
-    end
-
-    def fill_comment(comment)
-      comment.set(comment)
+    def link_number(value)
+      search_results[value - 1].text
     end
 
   end

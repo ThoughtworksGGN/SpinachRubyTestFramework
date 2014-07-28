@@ -26,8 +26,8 @@ module Pages
       comment_email.set(email)
     end
 
-    def fill_comment(commnt)
-      comment.set(commnt)
+    def fill_comment(comment)
+      comment.set(comment)
     end
 
   end

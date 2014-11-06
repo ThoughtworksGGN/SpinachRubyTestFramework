@@ -18,9 +18,9 @@ class Spinach::Features::SmokeTests < Spinach::FeatureSteps
     home_page.submit_search
   end
 
-  step 'I should see first link as Agile Development and Experience Design | ThoughtWorks' do
+  step 'I should see first link as ThoughtWorks' do
     home_page = Pages::Home.new
     expect{ home_page.search_results.count }.to greater_than(0)
-    expect{ home_page.link_number(1) }.to become("Agile Development and Experience Design | ThoughtWorks")
+    expect{ home_page.link_number(1) }.to include_text("ThoughtWorks")
   end
 end

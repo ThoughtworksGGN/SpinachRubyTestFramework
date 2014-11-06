@@ -6,4 +6,4 @@ Feature: Smoke Tests
     Given I access Yahoo search page
     When I search for ThoughtWorks
     And I submit search
-    Then I should see first link as Agile Development and Experience Design | ThoughtWorks
+    Then I should see first link as ThoughtWorks

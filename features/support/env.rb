@@ -1,16 +1,21 @@
 ENV['RAILS_ENV'] = 'test'
-require './config/environment'
 
-require 'rspec/rails'
+require 'rspec'
+require 'capybara'
+require 'pry'
+require 'capybara-page-object'
+require 'rspec/expectations'
 
-Capybara.app_host = "http://search.yahoo.com/"
+
+Capybara.app_host   = "http://search.yahoo.com/"
 Capybara.run_server = false
 
-Dir["#{Rails.root}/features/pages/**/*.rb"].sort.each do |file|
-  require file
+Dir["features/pages/*.rb"].sort.each do |file|
+  file = "../../" + file
+  require_relative file
 end
 
-require "#{Rails.root}/features/steps/wait_steps.rb"
+require_relative '../../features/steps/wait_steps.rb'
 
 Capybara.default_wait_time = 16
 
@@ -19,7 +24,7 @@ Spinach.hooks.before_run do
     when 'true'
       require 'capybara/poltergeist'
       Capybara.register_driver :poltergeist do |app|
-        Capybara::Poltergeist::Driver.new(app, {js_errors: false, port:44678+ENV['TEST_ENV_NUMBER'].to_i, phantomjs_options:['--proxy-type=none'], timeout:180})
+        Capybara::Poltergeist::Driver.new(app, { js_errors: false, port: 44678+ENV['TEST_ENV_NUMBER'].to_i, phantomjs_options: ['--proxy-type=none'], timeout: 180 })
       end
       Capybara.default_driver = Capybara.javascript_driver = :poltergeist
     else
@@ -28,6 +33,7 @@ Spinach.hooks.before_run do
           Capybara.register_driver :selenium do |app|
             Capybara::Selenium::Driver.new(app, :browser => :chrome)
           end
+          Capybara.default_driver = Capybara.javascript_driver = :selenium
         else
           Capybara.default_driver = Capybara.javascript_driver = :selenium
       end

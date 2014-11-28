@@ -33,6 +33,38 @@ Spinach.hooks.before_run do
             Capybara::Selenium::Driver.new(app, :browser => :chrome)
           end
           Capybara.default_driver = Capybara.javascript_driver = :selenium
+
+        when 'ie'
+          caps = {
+              :browserName => "internet explorer",
+              :version => "9",
+              :platform => "ANY",
+          }
+          Capybara.register_driver :ie do |app|
+            Capybara::Selenium::Driver.new(app, browser: :remote, url: "http://localhost:4411/wd/hub", desired_capabilities: caps)
+          end
+          Capybara.default_driver = Capybara.javascript_driver = :ie
+
+        when 'safari'
+          Capybara.register_driver :selenium do |app|
+            Capybara::Selenium::Driver.new(app, :browser => :safari)
+          end
+          Capybara.default_driver = Capybara.javascript_driver = :selenium
+
+        when 'iphone'
+          caps = {
+              :browserName => "iphone", #or iPad
+              :version => "7.1",
+              :platform => "MAC",
+              :simulator => true
+          }
+          client = Selenium::WebDriver::Remote::Http::Default.new
+          client.timeout = 1400
+          Capybara.register_driver :iphone do |app|
+            Capybara::Selenium::Driver.new(app, browser: :remote, url: "http://localhost:5555/wd/hub", http_client: client, desired_capabilities: caps)
+          end
+          Capybara.default_driver = Capybara.javascript_driver = :iphone
+
         else
           Capybara.default_driver = Capybara.javascript_driver = :selenium
       end

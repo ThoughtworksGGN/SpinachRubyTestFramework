@@ -40,6 +40,6 @@ Steps to run tests from Commandline:
     * Run command: headless=false bundle exec spinach
 
 PS: You can download chrome driver from https://code.google.com/p/selenium/wiki/ChromeDriver
-PS: For setting up differnent browsers on local, see https://my.thoughtworks.com/groups/testing/blog/2014/11/27/cross-browser
+PS: For setting up differnent browsers on local, see https://thoughtworks.jiveon.com/blogs/pulkitkochar/2014/11/27/cross-browser
 
 
